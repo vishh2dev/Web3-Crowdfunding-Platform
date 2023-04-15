@@ -18,8 +18,14 @@ const CreateCampaign = () => {
     image:''
   });
 
-  const handleSubmit = () =>{
+  const handleFormChange = (fieldName,e) =>{
+    setForm({...form, [fieldName]: e.target.value})
+  }
 
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log(form)
   }
   return (
     <div className='bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4'>
@@ -35,14 +41,14 @@ const CreateCampaign = () => {
             placeholder= 'John Doe'
             inputType= 'text'
             value={form.name}
-            handleChange= {() =>{}}
+            handleChange= {(e) =>{handleFormChange('name',e)}}
           />
           <FormField 
             labelName= 'Campaign Title *'
             placeholder= 'Write a title'
             inputType= 'text'
             value={form.title}
-            handleChange= {() =>{}}
+            handleChange= {(e) =>{handleFormChange('title',e)}}
           />
         </div>
         <FormField 
@@ -50,7 +56,7 @@ const CreateCampaign = () => {
             placeholder= 'Write your story'
             isTextArea
             value={form.description}
-            handleChange= {() =>{}}
+            handleChange= {(e) =>{handleFormChange('description',e)}}
           />
         <div className='w-full flex justify-start items-center p-4 bg-[#8c6dfd] h-[120px] rounded-[10px]'>
           <img src={money} alt='money' className='w-[40px] h-[40px] object-contain' />
@@ -62,25 +68,31 @@ const CreateCampaign = () => {
             placeholder= 'ETH 0.5'
             inputType= 'text'
             value={form.target}
-            handleChange= {() =>{}}
+            handleChange= {(e) =>{handleFormChange('target',e)}}
           />
           <FormField 
             labelName= 'End Date *'
             placeholder= 'End Date'
             inputType= 'date'
             value={form.deadline}
-            handleChange= {() =>{}}
+            handleChange= {(e) =>{handleFormChange('deadline',e)}}
+          />
+          </div>
+          <FormField 
+            labelName= 'Campaign Image *'
+            placeholder= 'Place imge url of your campaign'
+            inputType= 'url'
+            value={form.image}
+            handleChange= {(e) =>{handleFormChange('image',e)}}
           />
 
-          <div className='flex justify-content items-center mt-[40px]'>
+          <div className='flex justify-center items-center mt-[40px]'>
             <CustomButton
               btnType='submit'
               title='Submit new campaign'
               styles='bg-[#1dc071]'
             />
-
           </div>
-        </div>
       </form>
     </div>
   )
